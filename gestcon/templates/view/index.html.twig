@@ -1,0 +1,80 @@
+{# extind tempalte-ul de baza, aducand doar modificarile specifice acestei pagini #}
+{% extends "base.html.twig" %}
+
+{# blocul unde se seteaza titlul paginii curente #}
+{% block title %}Vizualizare angajati{% endblock %}
+
+{% block stylesheets %}
+    {# adaugare pagina custom de CSS #}
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+{% endblock %}
+
+{% block body %}
+    <h2>Lista cu toti angajatii</h2>
+    <br />
+
+    {# creare tabel cu angajati #}
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-active">
+                <td>ID</td>
+                <td>Nume</td>
+                <td>Prenume</td>
+                <td>Numar telefon</td>
+                <td>Functie</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            {# pentru fiecare angajat in parte se va crea table row-ul specific #}
+            {% for angajat in angajati %}
+                {# pe row-ul tabelului (elementele "td" ale acestuia, fara sectiunea "action") se poate face click 
+                    pentru a fi redirectionati spre o pagina unde se pot vedea mai multe detalii despre angajat #}
+                <tr data-href="{{ path('view.show', {id: angajat.id}) }}">
+                    {# afisarea datelor angajatului curent 
+                        clasa "clickable-td" face cursorul sa fie de tipul pointer 
+                        si este folosita de codul jQueri de la finalul paginii #}
+                    <td class="clickable-td">{{ angajat.id }}</td>
+                    <td class="clickable-td">{{ angajat.Nume }}</td>
+                    <td class="clickable-td">{{ angajat.Prenume }}</td>
+                    <td class="clickable-td">{{ angajat.Nrtel }}</td>
+                    <td class="clickable-td">{{ angajat.Functie }}</td>
+                    {# butoanele de editare si stergere angajat:
+                        pentru editare se apeleaza ruta corespunzatoare, id-ul angajatului fiind trimis ca parametru (pt a stii ce angajat se editeaza) 
+                        pentru stergere se foloseste un atribut "data-href" care contine ruta corespunzatoare cu id-ul angajatului corespunzator,
+                        dar apelarea acestei rute se face folosind jQuery, in scriptul de mai jos #}
+                    <td>
+                        <a class="btn btn-sm btn-success"  href="{{ path('concedii.add', {id: angajat.id}) }}">Concediu</a>
+                        <a class="btn btn-sm" style="background-color: #11C3DD; color: white;" href="{{ path('view.edit', {id: angajat.id}) }}">Edit</a>
+                        <a class="btn btn-sm btn-danger delButton" style="color: white;" href="#" data-href="{{ path('view.remove', {id: angajat.id}) }}">Delete</a>
+                    </td> 
+                </tr>
+            {% endfor %}
+        </tbody>    
+        
+    </table>
+
+<script>
+    //am folosit jQuery pentru butonul de delete, pentru a putea primi confirmare din partea utilizatorului daca se doreste stergerea unui angajat
+    jQuery(document).ready(function($) {
+        /* Functie care este apelata cand se face click pe butonul "Delete"
+            si daca se confirma stergerea unui angajat, atunci se apeleaza
+            ruta corespunzatoare aflata in atributul "data-href" */
+        $(".delButton").click(function() {
+            if(confirm('Are you sure?')){
+                window.location = $(this).data("href");
+            }  
+        }),
+        /* Functie care este apelata cand se face click pe elementele dintr-un rand(row) pana la categoria "action"
+            si redirectioneaza utilizatorul spre o pagina care contine detalii despre angajatul pe care s-a facut click.
+            Ruta corespunzatoare este aflata in elementul "tr" iar click-ul se face pe un element "td"
+            de aceea se apeleaza la functia "parent" pentru a putea accesa atributul "data-href" a acestuia.
+            Nu am pus actiunea pe un element "tr" pentru ca interfera cu actiunea butoanelor "delete" si "edit"
+        */
+        $(".clickable-td").click(function() {
+            window.location = $(this).parent().data("href");
+        })  
+    });
+</script>
+{% endblock %} 

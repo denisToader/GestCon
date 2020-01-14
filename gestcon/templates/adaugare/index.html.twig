@@ -1,0 +1,13 @@
+{# extind tempalte-ul de baza, aducand doar modificarile specifice acestei pagini #}
+{% extends 'base.html.twig' %}
+
+{# blocul unde se seteaza titlul paginii curente #}
+{% block title %}Adaugare angajat{% endblock %}
+
+{% block body %}
+    <h2>Adaugare angajat nou </h2>
+    <br />
+
+    {# locul unde va fi atasat formularul #}
+    {{ form(form) }}
+{% endblock %}

@@ -1,0 +1,25 @@
+{# extind tempalte-ul de baza, aducand doar modificarile specifice acestei pagini #}
+{% extends 'base.html.twig' %}
+
+{# blocul unde se seteaza titlul paginii curente #}
+{% block title %}Adaugare concediu{% endblock %}
+
+{# blocul unde atasez un stylesheed #}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+{% endblock %}
+
+{% block body %}
+    {# variabilele unde vor fi atasate actiunea (edit sau adaugare) si numele si prenumele angajatului #}
+    <h2>{{ actiune }} concediu pentru angajatul: {{ angajat.nume }} {{ angajat.prenume }}</h2>
+    <br />
+    {# locul unde va fi atasat formularul #}
+    {{ form(form) }}
+{% endblock %}
+
+{# blocul unde atasez un script (fisier de tip js) care contine functii necesare #}
+{% block javascripts %}
+    <script src="../../js/functii.js"></script>
+    <script src="../../../js/functii.js"></script>
+{% endblock %}

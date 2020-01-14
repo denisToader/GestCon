@@ -1,0 +1,70 @@
+{% extends "base.html.twig" %} 
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+{% endblock %}
+
+{% block title %}Vizualizare detalii{% endblock %}
+
+{% block body %}
+    <h2>Vizualizare detalii angajat</label></h2>
+    <br /> <br />
+    <p class="detalii"><label>Nume: </label>{{ angajat.nume}} </p>
+    <p class="detalii"><label>Prenume: </label>{{ angajat.prenume }} </p>
+    <p class="detalii"><label>Numar telefon: </label>{{ angajat.nrtel }} </p>
+    <p class="detalii"><label>Functie: </label>{{ angajat.functie }} </p>
+    <p class="detalii"><label>Zile concediu ramase: </label> {{ zile_ramase }} /25</p>
+    <br /><br />
+
+    <table class="table table-triped">
+        <thead>
+            <tr class="table-active">
+                <td>ID</td>
+                <td>Tip concediu</td>
+                <td>Data de la</td>
+                <td>Data pana la</td>
+                <td>Numar zile</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            {# pentru fiecare angajat in parte se va crea table row-ul specific #}
+            {% for concediu in concedii %}
+                {# pe rand (elementele "td" ale acestuia, fara sectiunea "action") se poate face click pentru a fi redirectionati spre o pagina
+                    unde se pot vedea mai multe detalii despre angajat #}
+                <tr>
+                    <td>{{ concediu.id }}</td>
+                    <td>{{ concediu.tipconcediu }}</td>
+                    <td>{{ concediu.datadela|date("m/d/Y") }}</td>
+                    <td>{{ concediu.datapanala|date("m/d/Y") }}</td>
+                    <td>{{ concediu.nrzile }}</td>
+                    <td><a class="btn btn-sm" style="background-color: #11C3DD; color: white;" href="{{ path('concedii.edit', {id: concediu.id}) }}">Edit</a>
+                        <a class="btn btn-sm btn-danger delButton" style="color: white;" href="#" data-href="{{ path('concedii.delete', {id: concediu.id}) }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                {# Pozitionarea butonului pentru adaugarea unui concediu la mijlocul tabelului #}
+                <td colspan="6">
+                    {# se apeleaza ruta pentru adaugare de conediu, transmitand id-ul angajatului pentru care se face adaugarea concediului#}
+                    <a class="btn btn-sm btn-success"  href="{{ path('concedii.add', {id: angajat.id}) }}">Adaugare concediu</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+<script>
+    jQuery(document).ready(function($) {
+        /* Functie care este apelata cand se face click pe butonul "Delete"
+            si daca se confirma stergerea unui concediu, atunci se apeleaza
+            ruta corespunzatoare */
+        $(".delButton").click(function() {
+            if(confirm('Are you sure?')){
+                window.location = $(this).data("href");
+            }  
+        })
+    });
+</script>
+    
+{% endblock %}
