@@ -114,6 +114,9 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "symfony/asset": {
+        "version": "v5.0.2"
+    },
     "symfony/cache": {
         "version": "v5.0.2"
     },
@@ -254,6 +257,30 @@
             "./config/routes.yaml"
         ]
     },
+    "symfony/security-bundle": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "30efd98dd3b4ead6e9ad4713b1efc43bbe94bf77"
+        },
+        "files": [
+            "./config/packages/security.yaml"
+        ]
+    },
+    "symfony/security-core": {
+        "version": "v5.0.2"
+    },
+    "symfony/security-csrf": {
+        "version": "v5.0.2"
+    },
+    "symfony/security-guard": {
+        "version": "v5.0.2"
+    },
+    "symfony/security-http": {
+        "version": "v5.0.2"
+    },
     "symfony/service-contracts": {
         "version": "v2.0.1"
     },
@@ -301,6 +328,25 @@
     },
     "symfony/var-exporter": {
         "version": "v5.0.2"
+    },
+    "symfony/webpack-encore-bundle": {
+        "version": "1.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.6",
+            "ref": "69e1d805ad95964088bd510c05995e87dc391564"
+        },
+        "files": [
+            "./assets/css/app.css",
+            "./assets/js/app.js",
+            "./config/packages/assets.yaml",
+            "./config/packages/prod/webpack_encore.yaml",
+            "./config/packages/test/webpack_encore.yaml",
+            "./config/packages/webpack_encore.yaml",
+            "./package.json",
+            "./webpack.config.js"
+        ]
     },
     "symfony/yaml": {
         "version": "v5.0.2"

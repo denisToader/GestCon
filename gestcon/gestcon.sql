@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2020 at 07:42 PM
+-- Generation Time: Jan 15, 2020 at 05:30 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -57,17 +57,17 @@ CREATE TABLE `concedii` (
   `data_de_la` date NOT NULL,
   `data_pana_la` date NOT NULL,
   `nr_zile` int(11) NOT NULL,
-  `id_angajat_id` int(11) NOT NULL
+  `id_angajat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `concedii`
 --
 
-INSERT INTO `concedii` (`id`, `tip_concediu`, `data_de_la`, `data_pana_la`, `nr_zile`, `id_angajat_id`) VALUES
+INSERT INTO `concedii` (`id`, `tip_concediu`, `data_de_la`, `data_pana_la`, `nr_zile`, `id_angajat`) VALUES
+(29, 'Odihna', '2020-01-13', '2020-01-14', 2, 23),
 (30, 'Odihna', '2020-01-15', '2020-01-20', 4, 23),
-(32, 'Odihna', '2020-01-13', '2020-01-15', 3, 24),
-(39, 'Odihna', '2020-01-15', '2020-01-16', 2, 23);
+(32, 'Odihna', '2020-01-13', '2020-01-15', 3, 24);
 
 -- --------------------------------------------------------
 
@@ -103,8 +103,7 @@ ALTER TABLE `angajati`
 -- Indexes for table `concedii`
 --
 ALTER TABLE `concedii`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_69A34A556B0B6A02` (`id_angajat_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -120,23 +119,13 @@ ALTER TABLE `angajati`
 -- AUTO_INCREMENT for table `concedii`
 --
 ALTER TABLE `concedii`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `concedii`
---
-ALTER TABLE `concedii`
-  ADD CONSTRAINT `FK_69A34A556B0B6A02` FOREIGN KEY (`id_angajat_id`) REFERENCES `angajati` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

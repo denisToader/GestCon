@@ -10,12 +10,9 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        {# import custom stylesheet #}
+        <link rel="stylesheet" href="{{ asset('build/style.css') }}">
 
-        {% block stylesheets %}
-            {# adaugare pagina custom de CSS #}
-            <link rel="stylesheet" type="text/css" href="../css/style.css">
-            <link rel="stylesheet" type="text/css" href="../../css/style.css">
-        {% endblock %}
     </head>
     <body>
         {# Navbar-ul trebuie sa fie prezent in fiecare pagina, de aceea este creat in template-ul de baza, extins de toate paginile #}
@@ -30,10 +27,34 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('view.index') }}" style="color:#11C3DD;">Vizualizare</a>
                     </li>
+                    {# se afiseaza doar daca un utilizator este autentificat #}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                      <li class="nav-item">
                         <a class="nav-link" href="{{ path('add') }}" style="color:#11C3DD;">Adaugare</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('users') }}" style="color:#11C3DD;">Users</a>
+                    </li>
+                    {% endif %}
                 </ul>
+                {# daca este un utilizator autentificat, se afiseaza username-ul si un buton de logout #}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <ul class="navbar-nav ml-auto"> 
+                        <li class="nav-item">
+                            <a class="nav-link" hfer="#" style="color:white;">Logged in as: {{ app.user.username}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-sm btn-success" href="{{ path('app_logout') }}" style="color:white;">Logout</a>
+                        </li>
+                    </ul>
+                {# daca nu este nici un utilizator autentificat, se afiseaza butonul de login #}    
+                {% else %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-sm btn-success" href="{{ path('app_login') }}" style="color:white;">Login</a>
+                        </li>
+                    </ul>
+                {% endif %}
             </div>
         </nav>
         <br />
@@ -42,6 +63,11 @@
         <div class="container">
             {% block body %}{% endblock %}
         </div>
-        {% block javascripts %}{% endblock %}
+        {# import custom stylesheet 
+        <script type="text/javascript" src="{{ asset('build/functii.js') }}"></script>#}
+        {% block javascripts %}
+            {# adaug fisierul encore cu functiile #}
+            {{ encore_entry_script_tags('functii') }}
+        {% endblock %}
     </body>
-</html>
+</html> 

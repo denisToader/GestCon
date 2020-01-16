@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-
 //formularul pentru adaugare sau editare concedii 
 //creat folosind php bin/console make:form
 class ConcediiType extends AbstractType
@@ -20,11 +19,11 @@ class ConcediiType extends AbstractType
     {
         //campurile formularului create automat
         $builder
-            ->add('id_angajat', NumberType::class,[
+            /*->add('id_angajat', NumberType::class,[
                 'attr' => [
                     'readonly' => true     //setez atributul readonly ca true, pentru a nu putea fi modificat de utilizator            
                 ]
-            ])
+            ])*/
             ->add('tip_concediu', ChoiceType::class,[
                 'choices' => [
                     'Odihna' => 'Odihna',
@@ -42,17 +41,11 @@ class ConcediiType extends AbstractType
 
             ])
             ->add('data_de_la', DateType::class, [
-                'widget' => 'single_text', //modific aspectul campului pentru selectare "data de la"
-                'attr' => [
-                    'onchange' => 'calculateNewDate()' //atasez o functie atributului onchange, functie ce este apelata ori de cate ori se modifica valoarea campului
-                ]
+                'widget' => 'single_text' //modific aspectul campului pentru selectare "data de la"
             ])
             //la fel ca pentru campul de mai sus
             ->add('data_pana_la', DateType::class, [
-                'widget' => 'single_text',
-                'attr' => [
-                    'onchange' => 'calculateNewDate()'
-                ]
+                'widget' => 'single_text'
             ])
             ->add('nr_zile', NumberType::class,[
                 'attr' => [

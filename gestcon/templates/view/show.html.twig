@@ -1,10 +1,5 @@
 {% extends "base.html.twig" %} 
 
-{% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
-{% endblock %}
-
 {% block title %}Vizualizare detalii{% endblock %}
 
 {% block body %}
@@ -25,7 +20,10 @@
                 <td>Data de la</td>
                 <td>Data pana la</td>
                 <td>Numar zile</td>
-                <td>Action</td>
+                {# se afiseaza doar daca un utilizator este autentificat #}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <td>Action</td>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -39,18 +37,24 @@
                     <td>{{ concediu.datadela|date("m/d/Y") }}</td>
                     <td>{{ concediu.datapanala|date("m/d/Y") }}</td>
                     <td>{{ concediu.nrzile }}</td>
-                    <td><a class="btn btn-sm" style="background-color: #11C3DD; color: white;" href="{{ path('concedii.edit', {id: concediu.id}) }}">Edit</a>
-                        <a class="btn btn-sm btn-danger delButton" style="color: white;" href="#" data-href="{{ path('concedii.delete', {id: concediu.id}) }}">Delete</a>
-                    </td>
+                    {# se afiseaza doar daca un utilizator este autentificat #}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <td><a class="btn btn-sm" style="background-color: #11C3DD; color: white;" href="{{ path('concedii.edit', {id: concediu.id}) }}">Edit</a>
+                            <a class="btn btn-sm btn-danger delButton" style="color: white;" href="#" data-href="{{ path('concedii.delete', {id: concediu.id}) }}">Delete</a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
-            <tr>
-                {# Pozitionarea butonului pentru adaugarea unui concediu la mijlocul tabelului #}
-                <td colspan="6">
-                    {# se apeleaza ruta pentru adaugare de conediu, transmitand id-ul angajatului pentru care se face adaugarea concediului#}
-                    <a class="btn btn-sm btn-success"  href="{{ path('concedii.add', {id: angajat.id}) }}">Adaugare concediu</a>
-                </td>
-            </tr>
+            {# se afiseaza doar daca un utilizator este autentificat #}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <tr>
+                    {# Pozitionarea butonului pentru adaugarea unui concediu la mijlocul tabelului #}
+                    <td colspan="6">
+                        {# se apeleaza ruta pentru adaugare de conediu, transmitand id-ul angajatului pentru care se face adaugarea concediului#}
+                        <a class="btn btn-sm btn-success"  href="{{ path('concedii.add', {id: angajat.id}) }}">Adaugare concediu</a>
+                    </td>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
 

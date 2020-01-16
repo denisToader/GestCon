@@ -20,11 +20,6 @@ class Concedii
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_angajat;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $tip_concediu;
@@ -44,21 +39,15 @@ class Concedii
      */
     private $nr_zile;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Angajati")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $id_angajat;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdAngajat(): ?int
-    {
-        return $this->id_angajat;
-    }
-
-    public function setIdAngajat(int $id_angajat): self
-    {
-        $this->id_angajat = $id_angajat;
-
-        return $this;
     }
 
     public function getTipConcediu(): ?string
@@ -105,6 +94,19 @@ class Concedii
     public function setNrZile(int $nr_zile): self
     {
         $this->nr_zile = $nr_zile;
+
+        return $this;
+    }
+
+    //functiile generate dupa crearea relatiei intre id_angajat din tabela concedii si id din tabela angajat
+    public function getIdAngajat(): ?Angajati
+    {
+        return $this->id_angajat;
+    }
+
+    public function setIdAngajat(?Angajati $id_angajat): self
+    {
+        $this->id_angajat = $id_angajat;
 
         return $this;
     }

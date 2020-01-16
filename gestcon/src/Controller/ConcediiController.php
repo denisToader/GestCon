@@ -42,7 +42,7 @@ class ConcediiController extends AbstractController
         $em->flush();
 
         $id_angajat = $concediu->getIdAngajat();
-        
+        $id_angajat = $id_angajat->getId();
         /* redirectionarea catre pagina anterioara (cu detaliile despre angajatul caruia se sterge concediul)
             si se transmite id-ul angajatului pentru a fi incarcata pagina corecta
             (pagina de la care a pornit adaugarea) 
@@ -68,11 +68,8 @@ class ConcediiController extends AbstractController
 
         //se creaza variabila de tipul Concedii
         $concediu = new Concedii();
-        /* se seteaza id-ul angajatului pentru care se adauga concediul
-            (campul "id angajat" este de tipul read only si se face inserarea lui din cod,
-            pentru ca utilizatorul sa nu fie nevoit sa retina un id)
-        */
-        $concediu->setIdAngajat($id);
+     
+        $concediu->setIdAngajat($angajat);
 
         //se seteaza campurile "data de la" si "data pana la" cu data curenta (de azi)
         $concediu->setDataDeLa(new \DateTime());
@@ -138,6 +135,7 @@ class ConcediiController extends AbstractController
             (pagina de unde s-a plecat - cu detalii despre utilizator)
         */
         $id_angajat = $concediu->getIdAngajat();
+        $id_angajat = $id_angajat->getId();
         $angajat = new Angajati();
         $angajat = $angajatiRepository->find($id_angajat);
 

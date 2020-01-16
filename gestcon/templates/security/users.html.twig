@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %} 
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+{% endblock %}
+
+{% block title %}Vizualizare detalii{% endblock %}
+
+{% block body %}
+    <h2>Vizualizare utilizatori existenti</label></h2>
+    <br /> <br />
+
+    <table class="table table-triped" style="width:30%; margin:auto;">
+        <thead>
+            <tr class="table-active">
+                <td>ID</td>
+                <td>Username</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="6">
+                    <a class="btn btn-sm btn-success"  href="{{ path('register') }}">Adaugare utilizator nou</a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>    
+{% endblock %}

@@ -4,12 +4,6 @@
 {# blocul unde se seteaza titlul paginii curente #}
 {% block title %}Vizualizare angajati{% endblock %}
 
-{% block stylesheets %}
-    {# adaugare pagina custom de CSS #}
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-{% endblock %}
-
 {% block body %}
     <h2>Lista cu toti angajatii</h2>
     <br />
@@ -23,7 +17,10 @@
                 <td>Prenume</td>
                 <td>Numar telefon</td>
                 <td>Functie</td>
-                <td>Action</td>
+                {# se afiseaza doar daca un utilizator este autentificat #}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <td>Action</td>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -44,11 +41,14 @@
                         pentru editare se apeleaza ruta corespunzatoare, id-ul angajatului fiind trimis ca parametru (pt a stii ce angajat se editeaza) 
                         pentru stergere se foloseste un atribut "data-href" care contine ruta corespunzatoare cu id-ul angajatului corespunzator,
                         dar apelarea acestei rute se face folosind jQuery, in scriptul de mai jos #}
+                    {# se afiseaza doar daca un utilizator este autentificat #}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <td>
                         <a class="btn btn-sm btn-success"  href="{{ path('concedii.add', {id: angajat.id}) }}">Concediu</a>
                         <a class="btn btn-sm" style="background-color: #11C3DD; color: white;" href="{{ path('view.edit', {id: angajat.id}) }}">Edit</a>
                         <a class="btn btn-sm btn-danger delButton" style="color: white;" href="#" data-href="{{ path('view.remove', {id: angajat.id}) }}">Delete</a>
-                    </td> 
+                    </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>    
