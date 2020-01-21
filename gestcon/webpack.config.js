@@ -28,6 +28,8 @@ Encore
     .addEntry('functii', './assets/js/functii.js')
     .addEntry('style', './assets/css/style.css')
     .addEntry('logo', './assets/img/logo.png')
+    .addEntry('ro_flag', './assets/img/ro_RO.png')
+    .addEntry('us_flag', './assets/img/en.png')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

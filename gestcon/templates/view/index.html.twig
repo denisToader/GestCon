@@ -2,10 +2,10 @@
 {% extends "base.html.twig" %}
 
 {# blocul unde se seteaza titlul paginii curente #}
-{% block title %}Vizualizare angajati{% endblock %}
+{% block title %}{% trans into '' ~ app.request.getLocale() %}Viewing employees{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h2>Lista cu toti angajatii</h2>
+    <h2>{% trans into '' ~ app.request.getLocale() %}List of all emplyees{% endtrans %}</h2>
     <br />
 
     {# creare tabel cu angajati #}
@@ -13,13 +13,13 @@
         <thead>
             <tr class="table-active">
                 <td>ID</td>
-                <td>Nume</td>
-                <td>Prenume</td>
-                <td>Numar telefon</td>
-                <td>Functie</td>
+                <td>{% trans into '' ~ app.request.getLocale() %}Last Name{% endtrans %}</td>
+                <td>{% trans into '' ~ app.request.getLocale() %}First Name{% endtrans %}</td>
+                <td>{% trans into '' ~ app.request.getLocale() %}Phone Number{% endtrans %}</td>
+                <td>{% trans into '' ~ app.request.getLocale() %}Position{% endtrans %}</td>
                 {# se afiseaza doar daca un utilizator este autentificat #}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <td>Action</td>
+                    <td>{% trans into '' ~ app.request.getLocale() %}Action{% endtrans %}</td>
                 {% endif %}
             </tr>
         </thead>
@@ -44,9 +44,9 @@
                     {# se afiseaza doar daca un utilizator este autentificat #}
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <td>
-                        <a class="btn btn-sm btn-success"  href="{{ path('concedii.add', {id: angajat.id}) }}">Concediu</a>
-                        <a class="btn btn-sm" style="background-color: #11C3DD; color: white;" href="{{ path('view.edit', {id: angajat.id}) }}">Edit</a>
-                        <a class="btn btn-sm btn-danger delButton" style="color: white;" href="#" data-href="{{ path('view.remove', {id: angajat.id}) }}">Delete</a>
+                        <a class="btn btn-sm btn-success"  href="{{ path('concedii.add', {id: angajat.id}) }}">{% trans into '' ~ app.request.getLocale() %}Holiday{% endtrans %}</a>
+                        <a class="btn btn-sm" style="background-color: #11C3DD; color: white;" href="{{ path('view.edit', {id: angajat.id}) }}">{% trans into '' ~ app.request.getLocale() %}Edit{% endtrans %}</a>
+                        <a class="btn btn-sm btn-danger delButton" style="color: white;" href="#" data-href="{{ path('view.remove', {id: angajat.id}) }}">{% trans into '' ~ app.request.getLocale() %}Delete{% endtrans %}</a>
                     </td>
                     {% endif %}
                 </tr>

@@ -2,10 +2,10 @@
 {% extends 'base.html.twig' %}
 
 {# blocul unde se seteaza titlul paginii curente #}
-{% block title %}Adaugare angajat{% endblock %}
+{% block title %}{% trans into '' ~ app.request.getLocale() %}Adding employee{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h2>Adaugare angajat nou </h2>
+    <h2>{% trans into '' ~ app.request.getLocale() %}Adding new employee{% endtrans %}</h2>
     <br />
 
     {# locul unde va fi atasat formularul #}

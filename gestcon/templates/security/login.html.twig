@@ -15,10 +15,10 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
+    <h1 class="h3 mb-3 font-weight-normal">{% trans into '' ~ app.request.getLocale() %}Please sign in{% endtrans %}</h1>
+    <label for="inputUsername">{% trans into '' ~ app.request.getLocale() %}Username{% endtrans %}</label>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
+    <label for="inputPassword">{% trans into '' ~ app.request.getLocale() %}Password{% endtrans %}</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
     <input type="hidden" name="_csrf_token"
@@ -38,7 +38,7 @@
 
     <br />
     <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
+        {% trans into '' ~ app.request.getLocale() %}Sign in{% endtrans %}
     </button>
 </form>
 {% endblock %}

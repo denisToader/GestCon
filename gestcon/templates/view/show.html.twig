@@ -1,28 +1,28 @@
 {% extends "base.html.twig" %} 
 
-{% block title %}Vizualizare detalii{% endblock %}
+{% block title %}{% trans into '' ~ app.request.getLocale() %}Viewing details{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h2>Vizualizare detalii angajat</label></h2>
+    <h2>{% trans into '' ~ app.request.getLocale() %}View employee details{% endtrans %}</label></h2>
     <br /> <br />
-    <p class="detalii"><label>Nume: </label>{{ angajat.nume}} </p>
-    <p class="detalii"><label>Prenume: </label>{{ angajat.prenume }} </p>
-    <p class="detalii"><label>Numar telefon: </label>{{ angajat.nrtel }} </p>
-    <p class="detalii"><label>Functie: </label>{{ angajat.functie }} </p>
-    <p class="detalii"><label>Zile concediu ramase: </label> {{ zile_ramase }} /25</p>
+    <p class="detalii"><label>{% trans into '' ~ app.request.getLocale() %}Last Name{% endtrans %}: </label>{{ angajat.nume}} </p>
+    <p class="detalii"><label>{% trans into '' ~ app.request.getLocale() %}First Name{% endtrans %}: </label>{{ angajat.prenume }} </p>
+    <p class="detalii"><label>{% trans into '' ~ app.request.getLocale() %}Phone Number{% endtrans %}: </label>{{ angajat.nrtel }} </p>
+    <p class="detalii"><label>{% trans into '' ~ app.request.getLocale() %}Position{% endtrans %}: </label>{{ angajat.functie }} </p>
+    <p class="detalii"><label>{% trans into '' ~ app.request.getLocale() %}Holidays days left{% endtrans %}: </label> {{ zile_ramase }} /25</p>
     <br /><br />
 
     <table class="table table-triped">
         <thead>
             <tr class="table-active">
                 <td>ID</td>
-                <td>Tip concediu</td>
-                <td>Data de la</td>
-                <td>Data pana la</td>
-                <td>Numar zile</td>
+                <td>{% trans into '' ~ app.request.getLocale() %}Holiday type{% endtrans %}</td>
+                <td>{% trans into '' ~ app.request.getLocale() %}From date{% endtrans %}</td>
+                <td>{% trans into '' ~ app.request.getLocale() %}To date{% endtrans %}</td>
+                <td>{% trans into '' ~ app.request.getLocale() %}Number of days{% endtrans %}</td>
                 {# se afiseaza doar daca un utilizator este autentificat #}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <td>Action</td>
+                    <td>{% trans into '' ~ app.request.getLocale() %}Action{% endtrans %}</td>
                 {% endif %}
             </tr>
         </thead>
@@ -51,7 +51,7 @@
                     {# Pozitionarea butonului pentru adaugarea unui concediu la mijlocul tabelului #}
                     <td colspan="6">
                         {# se apeleaza ruta pentru adaugare de conediu, transmitand id-ul angajatului pentru care se face adaugarea concediului#}
-                        <a class="btn btn-sm btn-success"  href="{{ path('concedii.add', {id: angajat.id}) }}">Adaugare concediu</a>
+                        <a class="btn btn-sm btn-success"  href="{{ path('concedii.add', {id: angajat.id}) }}">{% trans into '' ~ app.request.getLocale() %}Add holiday{% endtrans %}</a>
                     </td>
                 </tr>
             {% endif %}

@@ -5,17 +5,17 @@
     <link rel="stylesheet" type="text/css" href="../../css/style.css">
 {% endblock %}
 
-{% block title %}Vizualizare detalii{% endblock %}
+{% block title %}{% trans into '' ~ app.request.getLocale() %}View details{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h2>Vizualizare utilizatori existenti</label></h2>
+    <h2>{% trans into '' ~ app.request.getLocale() %}View existing users{% endtrans %}</label></h2>
     <br /> <br />
 
     <table class="table table-triped" style="width:30%; margin:auto;">
         <thead>
             <tr class="table-active">
                 <td>ID</td>
-                <td>Username</td>
+                <td>{% trans into '' ~ app.request.getLocale() %}Username{% endtrans %}</td>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +27,7 @@
             {% endfor %}
             <tr>
                 <td colspan="6">
-                    <a class="btn btn-sm btn-success"  href="{{ path('register') }}">Adaugare utilizator nou</a>
+                    <a class="btn btn-sm btn-success"  href="{{ path('register') }}">{% trans into '' ~ app.request.getLocale() %}Add new user{% endtrans %}</a>
                 </td>
             </tr>
 

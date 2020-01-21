@@ -35,3 +35,12 @@ label {
     font-weight: bold;
     padding-right: 5px;
 }
+
+li > a > img {
+    width: 50px;
+    border-radius:7px;
+}
+
+li > a > img:hover {
+    width: 60px;
+}

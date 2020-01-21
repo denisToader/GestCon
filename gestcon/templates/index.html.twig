@@ -1,9 +1,9 @@
 {% extends "base.html.twig" %}
 
 {% block body %} 
-    <h2>Welcome to GestCon(Gestionarea Concediilor)</h2>
+    <h2>{% trans into '' ~ app.request.getLocale() %}Welcome to{% endtrans %} GestCon({% trans into '' ~ app.request.getLocale() %}Holidays management system{% endtrans %})</h2>
     <br /><br /><br />
-    <p>Powered by</p>
+    <p>{% trans into '' ~ app.request.getLocale() %}Powered by{% endtrans %}</p>
     <!-- <img src="img/logo.png"></img> -->
     <img src="{{ asset('build/images/logo.png')}}"></img>
 {% endblock %}

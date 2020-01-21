@@ -37,7 +37,7 @@ class ViewController extends AbstractController
     public function view(AngajatiRepository $angajatiRepository){
 
         //preluarea tuturor angajatilor din repository-ul specific
-        $angajati = $angajatiRepository->findAll();
+        $angajati = $angajatiRepository->findAll();  
 
         //creare view pentru vizualizarea tuturor angajatilor
         return $this->render('view/index.html.twig', [

@@ -12,6 +12,7 @@ use App\Repository\ConcediiRepository;
 use DateTimeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /*  Controller folosit pentru:
             * adaugarea unui concediu
@@ -58,7 +59,7 @@ class ConcediiController extends AbstractController
     /**
      * @Route("/add/{id}", name="add")
      */
-    public function add(Request $request, $id, AngajatiRepository $angajatiRepository){
+    public function add(Request $request, $id, AngajatiRepository $angajatiRepository, TranslatorInterface $translator){
 
         /* se cauta angajatul pentru care se face inserarea, 
             pentru a fi afisat numele si prenumele acestuia deasupra formularului
@@ -107,10 +108,12 @@ class ConcediiController extends AbstractController
             ex. Editare concediu pentru angajatul X
                 Adaugare concediu pentru angajatul X
         */
+        //traducerea actiunii
+        $actiune = $translator->trans('Adding');
         return $this->render('concedii/index.html.twig', [
             'form' => $form->createView(),
             'angajat' => $angajat,
-            'actiune' => 'Adaugare '
+            'actiune' => $actiune
         ]);
     }
 
@@ -119,7 +122,7 @@ class ConcediiController extends AbstractController
     /**
      * @Route("/edit/{id}", name="edit")
      */
-    public function edit(Request $request, $id, ConcediiRepository $concediiRepository, AngajatiRepository $angajatiRepository){        
+    public function edit(Request $request, $id, ConcediiRepository $concediiRepository, AngajatiRepository $angajatiRepository, TranslatorInterface $translator){        
         //creare variabila de tip Concediu
         $concediu = new Concedii();
         //se cauta concediul cu id-ul trimis, in repository-ul de concedii
@@ -153,10 +156,11 @@ class ConcediiController extends AbstractController
         /* afisarea paginii cu formularul, cu numele si prenumele angjatului deasupra acestuia
             si actiunea (chestiuni explicate mai sus in ruta pt adaugare)
         */
+        $actiune = $translator->trans('Editing');
         return $this->render('concedii/index.html.twig', [
             'form' => $form->createView(),
             'angajat' => $angajat,
-            'actiune' => 'Editare '
+            'actiune' => $actiune
         ]);
 
     }

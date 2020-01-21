@@ -18,15 +18,22 @@ class AngajatiType extends AbstractType
     {
         //campurile formularului create automat
         $builder
-            ->add('Nume')
-            ->add('Prenume')
+            // traducerea se realzieaza automat in parametrul 'label' pe baza parametrului "_locale" setat
+            ->add('Nume', TextType::class, [
+                'label' => 'Last Name'
+            ])
+            ->add('Prenume', TextType::class, [
+                'label' => 'First Name'
+            ])
             //am adaugat un atribut maxlength care limiteaza lungimea campului la 10 caractere
             ->add('Nr_tel', TextType::class, [
+                'label' => 'Phone Number',
                 'attr' => [
                     'maxlength' => 10
                 ]
             ])
             ->add('functie', ChoiceType::class,[
+                'label' => 'Position',
                 'choices' => [
                     'Programator' => 'Programator',
                     'Tester' => 'Tester',
@@ -35,6 +42,7 @@ class AngajatiType extends AbstractType
             ])
             //am adaugat un buton pentru cu ajutorul caruia se face submit la formular
             ->add('Add', SubmitType::class, [
+                'label' => 'Add',
                 'attr' => [
                     'class' => 'btn btn-primary float-right' // am adaugat un atribut clasa, pentru a face butonul sa fie pozitionat in dreapta (float-right)
                 ] 

@@ -1,0 +1,60 @@
+#traducerile din engleza in romana
+# base template
+View: Vizualizare
+Add: Adaugare
+Users: Utilizatori
+Logged in as: Logat ca
+Logout: Delogare
+Login: Autentificare 
+
+# index template
+Welcome to: Bun venit la 
+Holidays management system: Gestionarea Concediilor
+Powered by: Cu sprijinul
+
+# adaugare template
+Adding employee: Adaugare angajat
+Adding new employee: Adaugare angajat nou
+
+# concedii template
+Adding holyday: Adaugare concediu
+holiday for employee: concediu pentru angajatul
+
+# login template
+Please sign in: Va rugam sa va conectati
+Username: Nume utilizator
+Password: Parola
+Sign in: Conectare
+
+# users template
+Viewing details: Vizualizare detalii
+View existing users: Vizualizare utilizatori existenti
+Add new user: Adaugare utilizator nou 
+
+# view/edit template
+Editing employee: Editare angajat
+
+# view/index template
+Viewing employees: Vizualizare angajati
+List of all emplyees: Lista cu toti angajatii
+Last Name: Nume
+First Name: Prenume
+Phone Number: Numar telefon
+Position: Functie
+Action: Actiune
+Holiday: Concediu
+Edit: Editare
+Delete: Stergere
+
+# view/show template
+View employee details: Vizualizare detalii angajat
+Holidays days left: Zile concediu ramase
+Holiday type: Tip concediu
+From date: Data de la
+To date: Data pana la
+Number of days: Numar zile
+Add holiday: Adaugare concediu
+
+# ConcediiController
+Adding: Adaugare
+Editing: Editare
