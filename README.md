@@ -1,2 +1,1 @@
-# cososys
-Repository pentru interviu
+Repository for Gestiunea Angajatilor
